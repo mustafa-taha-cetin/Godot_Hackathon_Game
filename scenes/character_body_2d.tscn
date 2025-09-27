@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dql7sdw5bf0ot"]
+[gd_scene load_steps=25 format=3 uid="uid://dql7sdw5bf0ot"]
 
 [ext_resource type="Texture2D" uid="uid://5bn8su0s4i1m" path="res://assets/sprites/knight.png" id="1_f50pn"]
 
@@ -17,6 +17,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd465"]
 atlas = ExtResource("1_f50pn")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj8jo"]
+atlas = ExtResource("1_f50pn")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhvu3"]
 atlas = ExtResource("1_f50pn")
@@ -101,7 +105,10 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj8jo")
+}],
 "loop": true,
 "name": &"jump",
 "speed": 5.0
@@ -168,7 +175,7 @@ radius = 5.0990195
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_73nau")
-animation = &"run"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
