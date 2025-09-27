@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfyo003hwmhgy"]
+[gd_scene load_steps=12 format=3 uid="uid://cfyo003hwmhgy"]
 
 [ext_resource type="PackedScene" uid="uid://dql7sdw5bf0ot" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 [ext_resource type="Texture2D" uid="uid://8on2oyb1spyb" path="res://assets/sprites/mist-forest-background-preview.png" id="1_j7wrs"]
 [ext_resource type="Script" uid="uid://cfl052onda2jf" path="res://scripts/player.gd" id="2_4dvvg"]
+[ext_resource type="Texture2D" uid="uid://bplnprlmmqqfq" path="res://assets/sprites/CityWall_Gate_1.png" id="2_dl8mf"]
 [ext_resource type="Texture2D" uid="uid://d28s10hu7dc26" path="res://assets/sprites/world_tileset.png" id="3_rnjyy"]
 [ext_resource type="PackedScene" uid="uid://dd6oejwl6ppps" path="res://scenes/coin.tscn" id="4_4vge2"]
 [ext_resource type="PackedScene" uid="uid://bsbl21mthvvpm" path="res://scenes/kill_zone.tscn" id="5_04qyp"]
@@ -192,10 +193,14 @@ sources/0 = SubResource("TileSetAtlasSource_4vge2")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j7wrs"]
 distance = -6.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xcayt"]
+radius = 33.0
+height = 76.0
+
 [node name="Game" type="Node2D"]
 
 [node name="MistForestBackgroundPreview" type="Sprite2D" parent="."]
-position = Vector2(416, -40)
+position = Vector2(406, -40)
 scale = Vector2(2.4453125, 3.8482146)
 texture = ExtResource("1_j7wrs")
 
@@ -260,3 +265,16 @@ position = Vector2(567, -223)
 
 [node name="coin12" parent="coins" instance=ExtResource("4_4vge2")]
 position = Vector2(201, -108)
+
+[node name="NextLevel" type="Area2D" parent="."]
+
+[node name="CityWallGate1" type="Sprite2D" parent="NextLevel"]
+position = Vector2(1000, -10.000002)
+scale = Vector2(0.775, 0.74999994)
+texture = ExtResource("2_dl8mf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
+position = Vector2(1000, -5)
+shape = SubResource("CapsuleShape2D_xcayt")
+
+[connection signal="body_entered" from="NextLevel" to="CharacterBody2D" method="_on_next_level_body_entered"]
